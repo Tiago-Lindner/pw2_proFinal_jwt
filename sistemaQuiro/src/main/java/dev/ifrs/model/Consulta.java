@@ -28,7 +28,7 @@ public class Consulta extends PanacheEntityBase {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "consultaSeq")
 	public Long id;
 
-    //Atributo
+    //Atributos
 	private String data;
 	private String horario;
 	private String situacao;

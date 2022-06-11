@@ -21,16 +21,6 @@ import dev.ifrs.model.Paciente;
 @Path("/pac")
 @Transactional
 public class PacienteWS {
-    
-    @GET
-    @Path("/salvar/{nome}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Paciente salvar(@PathParam("nome") String nome) {
-        Paciente pac = new Paciente();
-        pac.setNome(nome);
-        pac.persist();
-        return pac;
-    }
 
     @GET
     @Path("/listar/pacientes")

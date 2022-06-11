@@ -31,15 +31,12 @@ public class Quiropraxista extends PanacheEntityBase{
 	public Long id;
 
     //Atributos
-	
 	private String nome;
 	private String cpf;
 	private String email;
 	private String crm;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    // name = nome da coluna que irá armazenar a chave estrangeira
-    // na tabela Message (solução a partir da JPA 2)
     @JoinColumn(name="Consultas_Quiro")
 	@JsonBackReference
 	private Set<Consulta> consultas;
@@ -93,7 +90,6 @@ public class Quiropraxista extends PanacheEntityBase{
 	public void setCrm(String crm) {
 		this.crm = crm;
 	}
-	
 	
 	public Set<Consulta> getConsultas() {
 		return consultas;

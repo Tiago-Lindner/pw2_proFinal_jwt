@@ -35,6 +35,7 @@ public class Paciente extends PanacheEntityBase{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pacienteSeq")
 	public Long id;
 	
+	//atributos
 	private String nome;
 	private String cpf;
 	private String email;
