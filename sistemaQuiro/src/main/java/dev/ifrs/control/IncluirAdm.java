@@ -16,7 +16,7 @@ public class IncluirAdm {
     public String getSenha() {
         return senha;
     }
-    public void setUserSenha(String senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
     

@@ -1,5 +1,7 @@
 package dev.ifrs.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,6 +48,14 @@ public class Administrador extends PanacheEntityBase{
     }
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public static List<Administrador> findByCredentials(String nome, String senha) {
+        List<Administrador> listaN = find("nome", nome).list();
+        List<Administrador> listaS = find("senha", senha).list();
+        listaN.retainAll(listaS);
+        System.out.println(listaN);
+        return listaN;
     }
 
 
