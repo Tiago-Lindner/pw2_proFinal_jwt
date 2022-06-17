@@ -1,5 +1,6 @@
 package dev.ifrs.control;
 
+//esqueleto para o serviço de Adicionar do PacienteWS
 public class IncluirPaciente {
     
     private String nome;

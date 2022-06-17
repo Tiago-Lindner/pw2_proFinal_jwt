@@ -28,6 +28,7 @@ import dev.ifrs.model.Administrador;
 @Transactional
 public class AdmWS {
 
+    //Adicionar um Administrador. Requer Role de Admin
     @POST
     @Path("/adicionar")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -39,14 +40,18 @@ public class AdmWS {
         adm.persist();
     }
     
+    //Listar todos os Admnistradores. Requer Role de Admin
     @GET
     @Path("/listar/admins")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({ "Admin" })
     public List<Administrador> listarAdm() {
         // 3 - O método `listAll` recupera todos os objetos da classe User.
         return Administrador.listAll(); 
     }
+
 
     private static final Logger LOGGER = Logger.getLogger(AdmWS.class.getName());
 
@@ -60,6 +65,7 @@ public class AdmWS {
      @RestClient
      BackendLogin backend;
 
+    //Fazer login com nome e senha, e retornar comunicação com o serviço de backend. Está bem simplifica
     @GET
     @Path("/login/{nome}/{senha}")
     @Produces(MediaType.TEXT_PLAIN)
@@ -67,7 +73,7 @@ public class AdmWS {
     public String loginAdm(@PathParam("nome") String nome, @PathParam("senha") String senha){
         if(Administrador.findByCredentials(nome, senha).isEmpty() == false){
             LOGGER.log(Level.INFO, "LoginAdmin: {0}", fullName);
-            return backend.login(nome, senha);
+            return backend.login(nome);
         }
         else {
             return "Credenciais incorretas";

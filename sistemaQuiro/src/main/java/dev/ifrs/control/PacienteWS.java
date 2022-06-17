@@ -22,27 +22,7 @@ import dev.ifrs.model.Paciente;
 @Transactional
 public class PacienteWS {
 
-    @GET
-    @Path("/listar/pacientes")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public List<Paciente> listarPac() {
-        // 3 - O método `listAll` recupera todos os objetos da classe User.
-        return Paciente.listAll(); 
-    }
-    
-    @GET
-    @Path("/listar/consultas/{idPac}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Set<Consulta> listarCons(@PathParam("idPac") Long idPac) {
-        Paciente pac = Paciente.findById(idPac);
-        if (pac == null)
-            throw new BadRequestException("Paciente não encontrado"); 
-        
-        return pac.getConsultas(); 
-    }
-
+    //Adicionar um paciente
     @POST
     @Path("/adicionar")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -58,6 +38,30 @@ public class PacienteWS {
         pac.persist();
     }
 
+    //Listar todos os pacientes. Não mostra as consultas
+    @GET
+    @Path("/listar/pacientes")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public List<Paciente> listarPac() {
+        // 3 - O método `listAll` recupera todos os objetos da classe User.
+        return Paciente.listAll(); 
+    }
+    
+    //Listar as consultas do paciente com o Id informado
+    @GET
+    @Path("/listar/consultas/{idPac}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Set<Consulta> listarCons(@PathParam("idPac") Long idPac) {
+        Paciente pac = Paciente.findById(idPac);
+        if (pac == null)
+            throw new BadRequestException("Paciente não encontrado"); 
+        
+        return pac.getConsultas(); 
+    }
+
+    //Excluir o paciente com o Id informado. Não funciona se possuir consultas.
     @GET
     @Path("/excluir/{idPac}")
     @Produces(MediaType.APPLICATION_JSON)

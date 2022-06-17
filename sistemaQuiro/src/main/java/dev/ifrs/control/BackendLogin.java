@@ -11,14 +11,16 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import io.quarkus.oidc.token.propagation.AccessToken;
 
+//interface para comunicação com o serviço de backend
+
 @RegisterRestClient()
 @AccessToken
 public interface BackendLogin {
 
     @GET
-    @Path("/login/{nome}/{senha}")
+    @Path("/login/{nome}")
     @Produces(MediaType.TEXT_PLAIN)
     @RolesAllowed({ "Admin" })
-    public String login(@PathParam("nome") String nome, @PathParam("senha") String senha);
+    public String login(@PathParam("nome") String nome);
 
 }

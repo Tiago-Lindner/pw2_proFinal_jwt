@@ -22,10 +22,23 @@ import dev.ifrs.model.Quiropraxista;
 @Transactional
 public class ConsultaWS {
 
-   @GET
-   @Path("/marcar/{idCons}/{idPac}/{idQuiro}")
-   @Produces(MediaType.APPLICATION_JSON)
-   public Consulta salvar(@PathParam("idCons") Long idCons, @PathParam("idPac") Long idPac, @PathParam("idQuiro") Long idQuiro){
+    //Criar uma consulta com data e hora. Requer Role de Admin
+    @POST
+    @Path("/adicionar")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addConsulta(@RequestBody IncluirConsulta consulta){
+        Consulta cons = new Consulta();
+        cons.setData(consulta.getData());
+        cons.setHorario(consulta.getHorario());
+        cons.persist();
+    }
+
+    //Marcar uma consulta, ao adionar um paciente e quiropraxista, ao informar os ids deles e da consulta criada anteriormente.
+    //Requer Role de Admin
+    @GET
+    @Path("/marcar/{idCons}/{idPac}/{idQuiro}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Consulta salvar(@PathParam("idCons") Long idCons, @PathParam("idPac") Long idPac, @PathParam("idQuiro") Long idQuiro){
 
     Consulta consulta = Consulta.findById(idCons);
     consulta.setSituacao("MARCADA");
@@ -52,6 +65,7 @@ public class ConsultaWS {
     return consulta;
    }
 
+    //Altera a situação da consulta passada pelo id para CANCELADA
     @GET
     @Path("/cancelar/{idCons}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -63,6 +77,7 @@ public class ConsultaWS {
         return consulta;
     }
 
+    //Altera a situação da consulta passada pelo id para CONFIRMADA
     @GET
     @Path("/confirmar/{idCons}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -74,6 +89,7 @@ public class ConsultaWS {
         return consulta;
     }
 
+    //Altera a situação da consulta passada pelo id para REALIZADA
     @GET
     @Path("/realizar/{idCons}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -85,6 +101,7 @@ public class ConsultaWS {
         return consulta;
     }
 
+    //Lista todas as consultas
     @GET
     @Path("/listar")
     @Produces(MediaType.APPLICATION_JSON)
@@ -94,19 +111,9 @@ public class ConsultaWS {
         return Consulta.listAll();
         
     }
-
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void addConsulta(@RequestBody IncluirConsulta consulta){
-        Consulta cons = new Consulta();
-        cons.setData(consulta.getData());
-        cons.setHorario(consulta.getHorario());
-        cons.persist();
-    }
-    //Ver como banco dados funciona
-    //Se nao precisa SQL
     
-    //nao funciona pq tem dependencias entre classes
+    //exclui uma consulta. Infelizmente não funciona caso possua Paciente ou Quiropraxista 
+    //Provavelmente por causa das dependências entre as classes
     @GET
     @Path("/excluir/{idCons}")
     @Produces(MediaType.APPLICATION_JSON)

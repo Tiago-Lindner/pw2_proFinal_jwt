@@ -1,5 +1,6 @@
 package dev.ifrs.control;
 
+//esqueleto para o serviço de Adicionar do QuiropraxistaWS
 public class IncluirQuiro {
 
     private String nome;

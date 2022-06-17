@@ -50,6 +50,7 @@ public class Administrador extends PanacheEntityBase{
         this.senha = senha;
     }
 
+    //método para filtrar a lista de Administradores pelo nome e senha informado, retornando uma lista, mesmo que vazia
     public static List<Administrador> findByCredentials(String nome, String senha) {
         List<Administrador> listaN = find("nome", nome).list();
         List<Administrador> listaS = find("senha", senha).list();

@@ -33,12 +33,12 @@ public class Backend {
     String email;
 
     @GET
-    @Path("/{nome}/{senha}")
+    @Path("/{nome}")
     @Produces(MediaType.TEXT_PLAIN)
     @RolesAllowed({ "Admin" })
-    public String login(@PathParam("nome") String nome, @PathParam("senha") String senha) {
+    public String login(@PathParam("nome") String nome) {
         LOGGER.log(Level.INFO, "Backend: {0}", email);
-        return nome + " " + senha;
+        return "Login aprovado para o Admin: " + nome;
     }
 
 }

@@ -1,10 +1,10 @@
 package dev.ifrs.control;
 
+//esqueleto para o serviço de Adicionar do ConsultaWS
 public class IncluirConsulta {
 
 	private String data;
 	private String horario;
-	//private String situacao;
 
     public String getData() {
         return data;
@@ -19,15 +19,5 @@ public class IncluirConsulta {
     public void setHorario(String horario) {
         this.horario = horario;
     }
-/*
-    public String getSituacao() {
-        return situacao;
-    }
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
-*/
-    
-    
     
 }
