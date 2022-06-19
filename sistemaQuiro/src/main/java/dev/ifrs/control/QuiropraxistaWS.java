@@ -3,6 +3,7 @@ package dev.ifrs.control;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
@@ -22,10 +23,11 @@ import dev.ifrs.model.Quiropraxista;
 @Transactional
 public class QuiropraxistaWS {
     
-    //Adicionar um Quiropraxista
+    //Adicionar um Quiropraxista. Requer Role de Quiro
     @POST
     @Path("/adicionar")
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({ "Admin", "Quiro" })
     public void addQuiro(@RequestBody IncluirQuiro qui){
         Quiropraxista quiro = new Quiropraxista();
         quiro.setNome(qui.getNome());

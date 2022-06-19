@@ -1,5 +1,6 @@
 package dev.ifrs.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -142,16 +143,14 @@ public class Paciente extends PanacheEntityBase{
 
 
 // funcoes
-/*
-login
-
-criar usuario
-marcar consulta
-checar agenda
-
-
-
-*/ 
+//método para filtrar a lista de Administradores pelo nome e senha informado, retornando uma lista, mesmo que vazia
+public static List<Paciente> findByCredentials(String nome, String senha) {
+	List<Paciente> listaN = find("userLogin", nome).list();
+	List<Paciente> listaS = find("userSenha", senha).list();
+	listaN.retainAll(listaS);
+	System.out.println(listaN);
+	return listaN;
+}
 
     
 }

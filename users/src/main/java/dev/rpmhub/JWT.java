@@ -27,17 +27,54 @@ import io.smallrye.jwt.build.Jwt;
 public class JWT {
 
     @POST
+    @Path("/adm")
     @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public String getJWT(@FormParam("name") String name, @FormParam("email") String email){
+    public String getJWTA(@FormParam("name") String name, @FormParam("email") String email){ //ver se tem um claims senha
         /**
          * Uma observação importante, você deve autenticar (usuário e senha)
          * os usuários antes de criar um token.
          */
         return Jwt.issuer("https://localhost:8443")
             .upn(email)
-            .groups(new HashSet<>(Arrays.asList("User", "Admin")))
+            .groups(new HashSet<>(Arrays.asList("Admin")))
+            .claim(Claims.full_name, name)
+            .claim(Claims.email, email)
+            .sign();
+    }
+
+    @POST
+    @Path("/pac")
+    @PermitAll
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getJWTP(@FormParam("name") String name, @FormParam("email") String email){ //ver se tem um claims senha
+        /**
+         * Uma observação importante, você deve autenticar (usuário e senha)
+         * os usuários antes de criar um token.
+         */
+        return Jwt.issuer("https://localhost:8443")
+            .upn(email)
+            .groups(new HashSet<>(Arrays.asList("Pac")))
+            .claim(Claims.full_name, name)
+            .claim(Claims.email, email)
+            .sign();
+    }
+
+    @POST
+    @Path("/quiro")
+    @PermitAll
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getJWTQ(@FormParam("name") String name, @FormParam("email") String email){ //ver se tem um claims senha
+        /**
+         * Uma observação importante, você deve autenticar (usuário e senha)
+         * os usuários antes de criar um token.
+         */
+        return Jwt.issuer("https://localhost:8443")
+            .upn(email)
+            .groups(new HashSet<>(Arrays.asList("Quiro")))
             .claim(Claims.full_name, name)
             .claim(Claims.email, email)
             .sign();

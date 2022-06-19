@@ -35,10 +35,12 @@ public class Backend {
     @GET
     @Path("/{nome}")
     @Produces(MediaType.TEXT_PLAIN)
-    @RolesAllowed({ "Admin" })
+    @RolesAllowed({ "Admin", "Pac" })
     public String login(@PathParam("nome") String nome) {
         LOGGER.log(Level.INFO, "Backend: {0}", email);
-        return "Login aprovado para o Admin: " + nome;
+        return "Login realizado com sucesso para: " + nome;
+        //Retorna que o login foi aprovado. 
+        //Apenas uma mensagem mesmo
     }
 
 }

@@ -2,6 +2,7 @@ package dev.ifrs.control;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
@@ -26,6 +27,7 @@ public class ConsultaWS {
     @POST
     @Path("/adicionar")
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({ "Admin" })
     public void addConsulta(@RequestBody IncluirConsulta consulta){
         Consulta cons = new Consulta();
         cons.setData(consulta.getData());
@@ -38,6 +40,7 @@ public class ConsultaWS {
     @GET
     @Path("/marcar/{idCons}/{idPac}/{idQuiro}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({ "Admin" })
     public Consulta salvar(@PathParam("idCons") Long idCons, @PathParam("idPac") Long idPac, @PathParam("idQuiro") Long idQuiro){
 
     Consulta consulta = Consulta.findById(idCons);
