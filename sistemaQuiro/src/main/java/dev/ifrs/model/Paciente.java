@@ -15,15 +15,10 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-//import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
 public class Paciente extends PanacheEntityBase{
-    
-    //private static final long serialVersionUID = 1L;
-	
-	// ver jwt
 
 	//Atributos
 	

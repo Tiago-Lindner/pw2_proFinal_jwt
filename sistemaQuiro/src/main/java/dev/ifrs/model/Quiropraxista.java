@@ -14,7 +14,6 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-//import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
@@ -40,8 +39,6 @@ public class Quiropraxista extends PanacheEntityBase{
     @JoinColumn(name="Consultas_Quiro")
 	@JsonBackReference
 	private Set<Consulta> consultas;
-
-	//precisa de consultas?
 
 	//Contrutores
 	public Quiropraxista() {};

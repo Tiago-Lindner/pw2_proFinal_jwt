@@ -47,14 +47,6 @@ public class Consulta extends PanacheEntityBase {
 		this.situacao = sit;
 	}
 	
-	public Consulta(String horario, String sit, Paciente paciente,
-			Quiropraxista quiro) {
-		this.horario = horario;
-		this.situacao = sit;
-		this.paciente = paciente;
-		this.quiro = quiro;
-	}
-	
 	public Consulta(String data, String horario, String sit, Paciente paciente,
 			Quiropraxista quiro) {
 		this.data = data;

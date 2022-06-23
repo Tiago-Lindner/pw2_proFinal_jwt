@@ -117,9 +117,11 @@ public class ConsultaWS {
     
     //exclui uma consulta. Infelizmente não funciona caso possua Paciente ou Quiropraxista 
     //Provavelmente por causa das dependências entre as classes
+    //Requer ROle de Admin
     @GET
     @Path("/excluir/{idCons}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({ "Admin" })
     @Transactional
     public void excluir(@PathParam("idCons") Long idCons){
         Consulta consulta = Consulta.findById(idCons);
