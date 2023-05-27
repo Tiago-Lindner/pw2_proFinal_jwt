@@ -1,0 +1,18 @@
+@startuml
+
+:Usuário: 
+package Aplicativo{
+
+usecase (CRUD Calendário) as cale
+usecase (CRUD Refeição) as refe
+usecase (CRUD Cardápio) as card
+Usecase (CRUD Programação Semanal) as prog
+usecase (CRUD Configurações) as conf 
+}
+Usuário -- cale
+Usuário -- refe
+Usuário -- card
+Usuário -- prog
+Usuário -- conf
+
+@enduml

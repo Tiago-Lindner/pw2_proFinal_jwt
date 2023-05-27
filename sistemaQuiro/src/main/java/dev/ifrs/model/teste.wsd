@@ -1,0 +1,52 @@
+@startuml
+
+:Usuário: 
+package Aplicativo{
+
+usecase (Menu inicial) as MENU
+usecase (Calendário Mensal/Semanal) as UC1
+usecase (Definir a Semana) as UC11
+Usecase (Copiar uma semana da Lista) as UC12
+usecase (Definir o Dia) as UC2 
+usecase (Café da Manhã) as MANHA 
+usecase (Almoço) as ALMOCO
+usecase (Janta) as JANTA
+usecase (Lanches?) as LANCHE
+usecase (Definir Refeição) as UC4
+usecase (Copiar de outro dia) as UC41
+usecase (Lista de Refeições) as UC5
+usecase (Diversos tipos de Pratos) as UC51
+usecase (Prato) as UC52
+usecase (Editar Lista refeições) as UC6
+usecase (Adicionar Prato) as UC61
+usecase (Excluir Prato) as UC62
+usecase (Favoritar Prato) as UC63
+usecase (Lista de Semanas programadas) as UC7
+usecase (Configurações) as UC8
+}
+Usuário --> MENU
+MENU --> UC1
+MENU --> UC6
+MENU --> UC7
+MENU --> UC8
+UC6 --> UC61
+UC6 --> UC62
+UC6 --> UC63
+UC1 --> UC11
+UC11 --> UC12
+UC1 --> UC2
+UC2 --> MANHA
+UC2 --> ALMOCO
+UC2 --> JANTA
+UC2 --> LANCHE
+MANHA --> UC4
+ALMOCO --> UC4
+JANTA --> UC4
+LANCHE --> UC4
+UC4 --> UC41
+UC4 --> UC5
+UC5 --> UC51
+UC51 --> UC52
+
+
+@enduml
