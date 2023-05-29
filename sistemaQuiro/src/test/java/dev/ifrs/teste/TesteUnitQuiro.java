@@ -18,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TesteUnitQuiro {
 
     /** Logger. **/
+
+    
     private static Logger logger = Logger.getLogger("AnnotationsTest");
 
 private static List<Quiropraxista> quiLista;
