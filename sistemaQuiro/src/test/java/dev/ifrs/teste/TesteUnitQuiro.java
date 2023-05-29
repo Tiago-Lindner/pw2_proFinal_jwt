@@ -19,6 +19,7 @@ public class TesteUnitQuiro {
 
     /** Logger. **/
 
+
     
     private static Logger logger = Logger.getLogger("AnnotationsTest");
 
